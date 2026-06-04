@@ -2,6 +2,11 @@
 
 This project is a modern and responsive profile card developed using HTML5 and CSS3. It showcases personal and professional information in a clean, visually appealing interface.
 
+## Live Demo
+
+View Project:
+https://nithisa004.github.io/Nithisa-Devi-profile-card/
+
 ## Features
 - Fully Responsive Design
 - Modern UI/UX
