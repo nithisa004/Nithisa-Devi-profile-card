@@ -1,0 +1,253 @@
+/* ===========================================
+   Profile Card - Glassmorphism Edition
+   =========================================== */
+
+/* ==== Google Font ==== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==== Reset ==== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==== Animated gradient page background ==== */
+body {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  /* Vibrant multi-stop gradient */
+  background: linear-gradient(
+    -45deg,
+    #6a11cb,
+    #2575fc,
+    #0bc5ea,
+    #8b5cf6,
+    #ec4899
+  );
+  background-size: 400% 400%;
+  animation: bgShift 10s ease infinite;
+}
+
+/* Continuously shift background */
+@keyframes bgShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* ==== Floating orbs for depth ==== */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+}
+body::before {
+  width: 500px;
+  height: 500px;
+  background: #2f027b;
+  top: -120px;
+  left: -120px;
+  animation: orb1 9s ease-in-out infinite alternate;
+}
+body::after {
+  width: 400px;
+  height: 400px;
+  background: #0639d4;
+  bottom: -100px;
+  right: -100px;
+  animation: orb2 11s ease-in-out infinite alternate;
+}
+@keyframes orb1 { to { transform: translate(80px, 80px); } }
+@keyframes orb2 { to { transform: translate(-80px, -80px); } }
+
+/* ==== Card wrapper ==== */
+.card-wrapper {
+  position: relative;
+  z-index: 1;
+  /* Page-load fade-in */
+  animation: fadeInUp 0.8s ease both;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== Glassmorphism card ==== */
+.profile-card {
+  /* frosted glass effect */
+  background: rgba(25, 1, 1, 0.15);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  padding: 0 0 2rem;
+  overflow: hidden;
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.profile-card:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+/* ==== Card header gradient strip ==== */
+.card-header {
+  height: 90px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 24px 24px 0 0;
+  position: relative;
+}
+
+/* ==== Avatar ==== */
+.profile-image {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.15);
+  position: absolute;
+  left: 50%;
+  bottom: -55px;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.profile-image:hover {
+  transform: translateX(-50%) scale(1.06);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ==== Body text ==== */
+.profile-body {
+  margin-top: 68px; /* offset for avatar overlap */
+  padding: 0 1.5rem;
+}
+
+.profile-name {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #010000;
+  letter-spacing: -0.3px;
+  margin-bottom: 0.25rem;
+}
+
+.profile-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #a78bfa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.15rem;
+}
+
+.profile-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 1rem;
+}
+
+/* Decorative divider */
+.divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #a78bfa, #38bdf8);
+  border-radius: 99px;
+  margin: 0 auto 1rem;
+}
+
+.profile-bio {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 1.5rem;
+}
+
+/* ==== Skill chips ==== */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+}
+.chip {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.3px;
+  transition: background 0.2s;
+}
+.chip:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ==== Buttons ==== */
+.profile-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  opacity: 0.92;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+.btn-linkedin {
+  background: #0A66C2;
+  color: #fff;
+}
+.btn-github {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+/* ==== Mobile breakpoint ==== */
+@media (max-width: 420px) {
+  body { padding: 1rem; }
+  .profile-card { border-radius: 18px; }
+  .card-header { height: 72px; border-radius: 18px 18px 0 0; }
+  .profile-image { width: 90px; height: 90px; bottom: -45px; }
+  .profile-body { margin-top: 56px; }
+  .profile-name { font-size: 1.35rem; }
+  .profile-actions { flex-direction: column; align-items: center; }
+}
